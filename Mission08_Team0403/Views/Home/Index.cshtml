@@ -1,8 +1,134 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model List<Task>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4">
+    <!-- Page Title -->
+    <div class="text-center mb-4">
+        <h1 class="display-4">Task Manager</h1>
+        <p class="lead">Prioritize your tasks efficiently using the 7 Habits Quadrant System.</p>
+        <a class="btn btn-primary btn-lg" asp-controller="Task" asp-action="Add">➕ Add New Task</a>
+    </div>
+
+    <!-- Quadrants Layout -->
+    <div class="row">
+        <!-- Quadrant 1 -->
+        <div class="col-md-6 mb-4">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4>🔥 Quadrant I: Important & Urgent</h4>
+                    <p>(Do it now!)</p>
+                </div>
+                <div class="card-body">
+                    @if (!Model.Any(t => t.Quadrant == Quadrant.ImportantUrgent && !t.IsCompleted))
+                    {
+                        <p class="text-muted">No urgent tasks at the moment. Stay proactive!</p>
+                    }
+                    else
+                    {
+                        @foreach (var task in Model.Where(t => t.Quadrant == Quadrant.ImportantUrgent && !t.IsCompleted))
+                        {
+                            <div class="alert alert-danger d-flex justify-content-between align-items-center">
+                                <span>@task.Name - Due: @task.DueDate?.ToShortDateString()</span>
+                                <div>
+                                    <a class="btn btn-sm btn-warning" asp-controller="Task" asp-action="Edit" asp-route-id="@task.TaskId">✏ Edit</a>
+                                    <a class="btn btn-sm btn-success" asp-controller="Task" asp-action="Complete" asp-route-id="@task.TaskId">✅ Complete</a>
+                                    <a class="btn btn-sm btn-danger" asp-controller="Task" asp-action="Delete" asp-route-id="@task.TaskId" onclick="return confirm('Are you sure?')">🗑 Delete</a>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Quadrant 2 -->
+        <div class="col-md-6 mb-4">
+            <div class="card border-warning">
+                <div class="card-header bg-warning text-dark">
+                    <h4>🕒 Quadrant II: Important & Not Urgent</h4>
+                    <p>(Plan it!)</p>
+                </div>
+                <div class="card-body">
+                    @if (!Model.Any(t => t.Quadrant == Quadrant.ImportantNotUrgent && !t.IsCompleted))
+                    {
+                        <p class="text-muted">No long-term tasks pending. Keep up the good work!</p>
+                    }
+                    else
+                    {
+                        @foreach (var task in Model.Where(t => t.Quadrant == Quadrant.ImportantNotUrgent && !t.IsCompleted))
+                        {
+                            <div class="alert alert-warning d-flex justify-content-between align-items-center">
+                                <span>@task.Name - Due: @task.DueDate?.ToShortDateString()</span>
+                                <div>
+                                    <a class="btn btn-sm btn-warning" asp-controller="Task" asp-action="Edit" asp-route-id="@task.TaskId">✏ Edit</a>
+                                    <a class="btn btn-sm btn-success" asp-controller="Task" asp-action="Complete" asp-route-id="@task.TaskId">✅ Complete</a>
+                                    <a class="btn btn-sm btn-danger" asp-controller="Task" asp-action="Delete" asp-route-id="@task.TaskId" onclick="return confirm('Are you sure?')">🗑 Delete</a>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Quadrant 3 -->
+        <div class="col-md-6 mb-4">
+            <div class="card border-info">
+                <div class="card-header bg-info text-white">
+                    <h4>⚡ Quadrant III: Not Important & Urgent</h4>
+                    <p>(Delegate it!)</p>
+                </div>
+                <div class="card-body">
+                    @if (!Model.Any(t => t.Quadrant == Quadrant.NotImportantUrgent && !t.IsCompleted))
+                    {
+                        <p class="text-muted">No distractions right now. Stay focused!</p>
+                    }
+                    else
+                    {
+                        @foreach (var task in Model.Where(t => t.Quadrant == Quadrant.NotImportantUrgent && !t.IsCompleted))
+                        {
+                            <div class="alert alert-info d-flex justify-content-between align-items-center">
+                                <span>@task.Name - Due: @task.DueDate?.ToShortDateString()</span>
+                                <div>
+                                    <a class="btn btn-sm btn-warning" asp-controller="Task" asp-action="Edit" asp-route-id="@task.TaskId">✏ Edit</a>
+                                    <a class="btn btn-sm btn-success" asp-controller="Task" asp-action="Complete" asp-route-id="@task.TaskId">✅ Complete</a>
+                                    <a class="btn btn-sm btn-danger" asp-controller="Task" asp-action="Delete" asp-route-id="@task.TaskId" onclick="return confirm('Are you sure?')">🗑 Delete</a>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Quadrant 4 -->
+        <div class="col-md-6 mb-4">
+            <div class="card border-secondary">
+                <div class="card-header bg-secondary text-white">
+                    <h4>🎮 Quadrant IV: Not Important & Not Urgent</h4>
+                    <p>(Avoid it!)</p>
+                </div>
+                <div class="card-body">
+                    @if (!Model.Any(t => t.Quadrant == Quadrant.NotImportantNotUrgent && !t.IsCompleted))
+                    {
+                        <p class="text-muted">You're doing great! No unnecessary tasks right now.</p>
+                    }
+                    else
+                    {
+                        @foreach (var task in Model.Where(t => t.Quadrant == Quadrant.NotImportantNotUrgent && !t.IsCompleted))
+                        {
+                            <div class="alert alert-secondary d-flex justify-content-between align-items-center">
+                                <span>@task.Name - Due: @task.DueDate?.ToShortDateString()</span>
+                                <div>
+                                    <a class="btn btn-sm btn-warning" asp-controller="Task" asp-action="Edit" asp-route-id="@task.TaskId">✏ Edit</a>
+                                    <a class="btn btn-sm btn-success" asp-controller="Task" asp-action="Complete" asp-route-id="@task.TaskId">✅ Complete</a>
+                                    <a class="btn btn-sm btn-danger" asp-controller="Task" asp-action="Delete" asp-route-id="@task.TaskId" onclick="return confirm('Are you sure?')">🗑 Delete</a>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
