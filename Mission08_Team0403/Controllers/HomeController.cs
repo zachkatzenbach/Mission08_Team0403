@@ -30,18 +30,24 @@ namespace Mission08_Team0403.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [HttpPost]
-        public IActionResult AddTask(TaskModel task)
+        [HttpGet]
+        public IActionResult AddEditTask(int? id)
         {
-            if (ModelState.IsValid)
+            if (id == null)  // Add new task
             {
-                _taskRepository.AddTask(task);
-                return RedirectToAction("Index");
+                ViewBag.Categories = new SelectList(_categoryRepository.GetCategories(), "CategoryId", "CategoryName");
+                return View(new TaskModel());
             }
 
-            ViewBag.Categories = new SelectList(_categoryRepository.GetCategories(), "CategoryId", "CategoryName");
+            // Edit existing task
+            var task = _taskRepository.GetTaskById(id.Value);
+            if (task == null) return NotFound();
+
+            ViewBag.Categories = new SelectList(_categoryRepository.GetCategories(), "CategoryId", "CategoryName", task.CategoryId);
             return View(task);
         }
 
     }
+
+}
 }

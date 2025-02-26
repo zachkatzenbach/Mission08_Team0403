@@ -1,12 +1,14 @@
 ﻿@model YourNamespace.Models.TaskModel
 
 @{
-    ViewData["Title"] = "Add Task";
+    ViewData["Title"] = Model?.TaskId == 0 ? "Add Task" : "Edit Task";
 }
 
-<h2>Add a New Task</h2>
+<h2>@(Model?.TaskId == 0 ? "Add a New Task" : "Edit Task")</h2>
 
-<form asp-action="AddTask" asp-controller="Task" method="post">
+<form asp-action="@(Model?.TaskId == 0 ? "AddTask" : "EditTask")" asp-controller="Task" method="post">
+    <input type="hidden" asp-for="TaskId" />
+
     <div class="mb-3">
         <label asp-for="TaskName" class="form-label">Task</label>
         <input asp-for="TaskName" class="form-control" required />
@@ -41,7 +43,9 @@
         <label asp-for="Completed" class="form-check-label">Completed</label>
     </div>
 
-    <button type="submit" class="btn btn-primary mt-3">Save Task</button>
+    <button type="submit" class="btn btn-primary mt-3">
+        @(Model?.TaskId == 0 ? "Save Task" : "Update Task")
+    </button>
 </form>
 
 <a asp-action="Index" asp-controller="Task" class="btn btn-secondary mt-3">Back to List</a>
