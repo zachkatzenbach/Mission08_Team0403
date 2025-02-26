@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Mission08_Team0403.Models;
 
 namespace Mission08_Team0403.Controllers
@@ -28,5 +29,19 @@ namespace Mission08_Team0403.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpPost]
+        public IActionResult AddTask(TaskModel task)
+        {
+            if (ModelState.IsValid)
+            {
+                _taskRepository.AddTask(task);
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Categories = new SelectList(_categoryRepository.GetCategories(), "CategoryId", "CategoryName");
+            return View(task);
+        }
+
     }
 }

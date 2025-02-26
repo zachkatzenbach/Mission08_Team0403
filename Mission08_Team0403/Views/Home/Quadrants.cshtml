@@ -1,0 +1,76 @@
+﻿@model List<Task>
+<div class="row">
+    <!-- Quadrant 1 -->
+    <div class="col-md-6">
+        <h3>Quadrant I: Important & Urgent</h3>
+        @foreach (var task in Model.Where(t => t.Quadrant == Quadrant.ImportantUrgent && !t.IsCompleted))
+        {
+            <div class="task-card">
+                <span>@task.Name - Due: @task.DueDate?.ToShortDateString()</span>
+                <a class="btn btn-warning btn-sm" asp-controller="Task" asp-action="Edit" asp-route-id="@task.TaskId">Edit</a>
+                <a class="btn btn-danger btn-sm" asp-controller="Task" asp-action="Delete" asp-route-id="@task.TaskId" onclick="return confirm('Are you sure?')">Delete</a>
+                <a class="btn btn-success btn-sm" asp-controller="Task" asp-action="Complete" asp-route-id="@task.TaskId">Mark Complete</a>
+            </div>
+        }
+    </div>
+    <!-- Quadrant 2 -->
+    <div class="col-md-6">
+        <h3>Quadrant II: Important & Not Urgent</h3>
+        @foreach (var task in Model.Where(t => t.Quadrant == Quadrant.ImportantNotUrgent && !t.IsCompleted))
+        {
+            <div class="task-card">
+                <span>@task.Name - Due: @task.DueDate?.ToShortDateString()</span>
+                <a class="btn btn-warning btn-sm" asp-controller="Task" asp-action="Edit" asp-route-id="@task.TaskId">Edit</a>
+                <a class="btn btn-danger btn-sm" asp-controller="Task" asp-action="Delete" asp-route-id="@task.TaskId" onclick="return confirm('Are you sure?')">Delete</a>
+                <a class="btn btn-success btn-sm" asp-controller="Task" asp-action="Complete" asp-route-id="@task.TaskId">Mark Complete</a>
+            </div>
+        }
+    </div>
+    <!-- Quadrant 3 -->
+    <div class="col-md-6">
+        <h3>Quadrant III: Not Important & Urgent</h3>
+        @foreach (var task in Model.Where(t => t.Quadrant == Quadrant.NotImportantUrgent && !t.IsCompleted))
+        {
+            <div class="task-card">
+                <span>@task.Name - Due: @task.DueDate?.ToShortDateString()</span>
+                <a class="btn btn-warning btn-sm" asp-controller="Task" asp-action="Edit" asp-route-id="@task.TaskId">Edit</a>
+                <a class="btn btn-danger btn-sm" asp-controller="Task" asp-action="Delete" asp-route-id="@task.TaskId" onclick="return confirm('Are you sure?')">Delete</a>
+                <a class="btn btn-success btn-sm" asp-controller="Task" asp-action="Complete" asp-route-id="@task.TaskId">Mark Complete</a>
+            </div>
+        }
+    </div>
+    <!-- Quadrant 4 -->
+    <div class="col-md-6">
+        <h3>Quadrant IV: Not Important & Not Urgent</h3>
+        @foreach (var task in Model.Where(t => t.Quadrant == Quadrant.NotImportantNotUrgent && !t.IsCompleted))
+        {
+            <div class="task-card">
+                <span>@task.Name - Due: @task.DueDate?.ToShortDateString()</span>
+                <a class="btn btn-warning btn-sm" asp-controller="Task" asp-action="Edit" asp-route-id="@task.TaskId">Edit</a>
+                <a class="btn btn-danger btn-sm" asp-controller="Task" asp-action="Delete" asp-route-id="@task.TaskId" onclick="return confirm('Are you sure?')">Delete</a>
+                <a class="btn btn-success btn-sm" asp-controller="Task" asp-action="Complete" asp-route-id="@task.TaskId">Mark Complete</a>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+Message all-is-winter-team-3
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,47 @@
+﻿@model YourNamespace.Models.TaskModel
+
+@{
+    ViewData["Title"] = "Add Task";
+}
+
+<h2>Add a New Task</h2>
+
+<form asp-action="AddTask" asp-controller="Task" method="post">
+    <div class="mb-3">
+        <label asp-for="TaskName" class="form-label">Task</label>
+        <input asp-for="TaskName" class="form-control" required />
+        <span asp-validation-for="TaskName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DueDate" class="form-label">Due Date</label>
+        <input asp-for="DueDate" class="form-control" type="date" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Quadrant" class="form-label">Quadrant</label>
+        <select asp-for="Quadrant" class="form-select" required>
+            <option value="">Select Quadrant</option>
+            <option value="1">Quadrant I: Important / Urgent</option>
+            <option value="2">Quadrant II: Important / Not Urgent</option>
+            <option value="3">Quadrant III: Not Important / Urgent</option>
+            <option value="4">Quadrant IV: Not Important / Not Urgent</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CategoryId" class="form-label">Category</label>
+        <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.Categories">
+            <option value="">Select a Category</option>
+        </select>
+    </div>
+
+    <div class="form-check">
+        <input asp-for="Completed" class="form-check-input" type="checkbox" />
+        <label asp-for="Completed" class="form-check-label">Completed</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Save Task</button>
+</form>
+
+<a asp-action="Index" asp-controller="Task" class="btn btn-secondary mt-3">Back to List</a>
