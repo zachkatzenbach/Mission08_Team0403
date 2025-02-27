@@ -13,3 +13,4 @@ namespace Mission08_Team0403.Models
         public List<Task> Tasks { get; set; }  // Navigation property
     }
 }
+// note 2
