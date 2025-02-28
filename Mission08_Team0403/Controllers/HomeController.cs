@@ -10,11 +10,10 @@ namespace Mission08_Team0403.Controllers
 //See if this works
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private ITaskRepository _repo;
+        public HomeController(ITaskRepository temp)
         {
-            _logger = logger;
+            _repo = temp;
         }
 
         public IActionResult Index()
@@ -22,35 +21,6 @@ namespace Mission08_Team0403.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        [HttpGet]
-        public IActionResult AddEditTask(int? id)
-        {
-            if (id == null)  // Add new task
-            {
-                ViewBag.Categories = new SelectList(_categoryRepository.GetCategories(), "CategoryId", "CategoryName");
-                return View(new TaskModel());
-            }
-
-            // Edit existing task
-            var task = _taskRepository.GetTaskById(id.Value);
-            if (task == null) return NotFound();
-
-            ViewBag.Categories = new SelectList(_categoryRepository.GetCategories(), "CategoryId", "CategoryName", task.CategoryId);
-            return View(task);
-        }
 
     }
-
-}
 }
