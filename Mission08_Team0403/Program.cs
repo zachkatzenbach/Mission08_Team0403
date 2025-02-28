@@ -1,14 +1,13 @@
 using Microsoft.EntityFrameworkCore;
-using Scaffolding.Models;
+using YourProject.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-
-// ✅ Register Database Context with SQLite
+// Register database context with SQLite
 builder.Services.AddDbContext<TaskDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("TaskConnection")));
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -19,5 +18,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.Run();
+
 

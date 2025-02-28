@@ -12,14 +12,15 @@ namespace Mission08_Team0403.Models
         public string TaskName { get; set; }
 
         [Required]
-        public int Quadrant { get; set; }  // 1, 2, 3, or 4
+        public int Quadrant { get; set; }  
 
         [Required]
         public int CategoryId { get; set; }  // Foreign Key
+        [ForeignKey("CategoryId")]
         public Category Category { get; set; }
 
         public DateTime? DueDate { get; set; }
 
-        public bool Completed { get; set; } = false; // Default: Not completed
+        public bool Completed { get; set; } = false; 
     }
 }
