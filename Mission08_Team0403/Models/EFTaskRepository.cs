@@ -25,5 +25,10 @@ namespace Mission08_Team0403.Models
             return _context.Tasks.Include(t => t.Category).ToList();
         }
 
+        public void AddTask(Task task)
+        {
+            _context.Tasks.Add(task);
+            _context.SaveChanges();
+        }
     }
 }
