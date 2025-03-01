@@ -5,7 +5,6 @@
 }
 
 <h2>@(Model?.TaskId == 0 ? "Add a New Task" : "Edit Task")</h2>
-<div class="col-9"
 <form asp-action="@(Model?.TaskId == 0 ? "AddTask" : "EditTask")" asp-controller="Home" method="post">
     <input type="hidden" asp-for="TaskId" />
 
