@@ -1,0 +1,30 @@
+﻿@model Mission08_Team0403.Models.Task
+
+@{
+    ViewData["Title"] = "Task Confirmation";
+}
+
+<h2>@(Model?.TaskId == 0 ? "Task Successfully Added!" : "Task Successfully Updated!")</h2>
+
+<p><strong>Task:</strong> @Model.TaskName</p>
+<p><strong>Due Date:</strong> @Model.DueDate.("MM/dd/yyyy")</p>
+<p>
+    <strong>Quadrant:</strong>
+    @(Model.Quadrant == 1 ? "Quadrant I: Important / Urgent" :
+        Model.Quadrant == 2 ? "Quadrant II: Important / Not Urgent" :
+        Model.Quadrant == 3 ? "Quadrant III: Not Important / Urgent" : "Quadrant IV: Not Important / Not Urgent")
+</p>
+<p>
+    <strong>Category:</strong>
+    @{
+        var categories = (IEnumerable<Mission08_Team0403.Models.Category>)ViewBag.Categories;
+        var categoryName = categories.FirstOrDefault(x => x.CategoryId == Model.CategoryId)?.Name;
+    }
+    @categoryName
+</p>
+<p><strong>Completed:</strong> @(Model.Completed == 1 ? "Yes" : Model.Completed == 0 ? "No" : "Not Set")</p>
+
+<a asp-controller="Home" asp-action="AddTask" class="btn btn-primary mt-3">Add Another Task</a>
+<a asp-controller="Home" asp-action="Index" class="btn btn-secondary mt-3">Back to Task List</a>
+
+
