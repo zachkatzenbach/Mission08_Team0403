@@ -1,4 +1,4 @@
-﻿@model YourNamespace.Models.TaskModel
+﻿@model Mission08_Team0403.Models.Task
 
 @{
     ViewData["Title"] = Model?.TaskId == 0 ? "Add Task" : "Edit Task";
@@ -6,7 +6,7 @@
 
 <h2>@(Model?.TaskId == 0 ? "Add a New Task" : "Edit Task")</h2>
 
-<form asp-action="@(Model?.TaskId == 0 ? "AddTask" : "EditTask")" asp-controller="Task" method="post">
+<form asp-action="@(Model?.TaskId == 0 ? "AddTask" : "EditTask")" asp-controller="Home" method="post">
     <input type="hidden" asp-for="TaskId" />
 
     <div class="mb-3">
@@ -33,14 +33,21 @@
 
     <div class="mb-3">
         <label asp-for="CategoryId" class="form-label">Category</label>
-        <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.Categories">
+        <select asp-for="CategoryId" class="form-select">
             <option value="">Select a Category</option>
+            @foreach (var category in ViewBag.Categories) {
+               <option value="@category.CategoryId">@category.Name</option>
+            }
         </select>
     </div>
 
     <div class="form-check">
-        <input asp-for="Completed" class="form-check-input" type="checkbox" />
-        <label asp-for="Completed" class="form-check-label">Completed</label>
+        <label asp-for="Completed">Completed?</label> <br />
+        <select asp-for="Completed">
+            <option value="2"></option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
     </div>
 
     <button type="submit" class="btn btn-primary mt-3">
@@ -48,4 +55,4 @@
     </button>
 </form>
 
-<a asp-action="Index" asp-controller="Task" class="btn btn-secondary mt-3">Back to List</a>
+<a asp-action="Index" asp-controller="Home" class="btn btn-secondary mt-3">Back to List</a>

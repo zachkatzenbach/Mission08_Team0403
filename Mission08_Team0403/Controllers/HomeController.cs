@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Mission08_Team0403.Models;
+using Task = Mission08_Team0403.Models.Task;
 
 namespace Mission08_Team0403.Controllers
 {
@@ -16,11 +17,21 @@ namespace Mission08_Team0403.Controllers
             _repo = temp;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var tasks = _repo.GetTasksWithDetails();
+            return View(tasks);
         }
 
+
+        [HttpGet]
+        public IActionResult AddEditTask()
+        {
+            ViewBag.Categories = _repo.Categories;
+
+            return View("AddEditTask", new Task());
+        }
 
     }
 }

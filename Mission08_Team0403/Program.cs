@@ -1,13 +1,16 @@
 using Microsoft.EntityFrameworkCore;
-using YourProject.Models;
+using Mission08_Team0403.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllersWithViews();
 
 // Register database context with SQLite
 builder.Services.AddDbContext<TaskDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<ITaskRepository, EFTaskRepository>();
+
 
 var app = builder.Build();
 

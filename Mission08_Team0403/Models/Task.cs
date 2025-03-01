@@ -19,8 +19,8 @@ namespace Mission08_Team0403.Models
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
 
-        public DateTime? DueDate { get; set; }
+        public string? DueDate { get; set; }
 
-        public bool Completed { get; set; } = false; 
+        public int Completed { get; set; }
     }
 }
