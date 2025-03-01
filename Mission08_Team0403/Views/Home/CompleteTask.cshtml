@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Mission08_Team0403.Models.Task
+
+<div class="container mt-4">
+    <!-- Page Title -->
+    <div class="text-center mb-4">
+        <h1 class="display-4">Confirm Task Completion</h1>
+        <p class="lead">Are you sure you want to mark the task below as complete?</p>
+    </div>
+
+    <!-- Task Information -->
+    <div class="alert alert-success">
+        <h3>@Model.TaskName</h3>
+        <p><strong>Due Date:</strong> @Model.DueDate</p>
+        <p>
+            <strong>Quadrant:</strong>
+            @(Model.Quadrant == 1 ? "Quadrant I: Important & Urgent" :
+                Model.Quadrant == 2 ? "Quadrant II: Important & Not Urgent" :
+                Model.Quadrant == 3 ? "Quadrant III: Not Important & Urgent" : "Quadrant IV: Not Important & Not Urgent")
+        </p>
+    </div>
+
+    <!-- Delete Confirmation Form -->
+    <form asp-controller="Home" asp-action="Complete" method="post">
+        <!-- Pass the TaskId to the Delete action -->
+        <input type="hidden" asp-for="TaskId" />
+        <!-- Pass the entire Task object as hidden inputs -->
+        <input type="hidden" asp-for="TaskName" />
+        <input type="hidden" asp-for="DueDate" />
+        <input type="hidden" asp-for="Quadrant" />
+        <input type="hidden" asp-for="CategoryId" />
+        <input type="hidden" asp-for="Completed" value="1" />
+
+        <button type="submit" class="btn btn-success btn-lg">Complete Task</button>
+        <a class="btn btn-outline-dark btn-lg" asp-controller="Home" asp-action="Index">Cancel</a>
+    </form>
+</div>

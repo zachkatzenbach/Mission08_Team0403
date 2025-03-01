@@ -12,5 +12,10 @@ namespace Mission08_Team0403.Models
         public void AddTask(Task task);
 
         public void UpdateTask(Task task);
+
+        public Task GetTaskById(int id);
+        public void DeleteTask(Task task);
+
+        public void UpdateComplete(Task task);
     }
 }

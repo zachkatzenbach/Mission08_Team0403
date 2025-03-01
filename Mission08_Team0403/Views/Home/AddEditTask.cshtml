@@ -5,7 +5,7 @@
 }
 
 <h2>@(Model?.TaskId == 0 ? "Add a New Task" : "Edit Task")</h2>
-
+<div class="col-9"
 <form asp-action="@(Model?.TaskId == 0 ? "AddTask" : "EditTask")" asp-controller="Home" method="post">
     <input type="hidden" asp-for="TaskId" />
 
@@ -33,8 +33,8 @@
 
     <div class="mb-3">
         <label asp-for="CategoryId" class="form-label">Category</label>
-        <select asp-for="CategoryId" class="form-select">
-            <option value="0">Select a Category</option>
+        <select asp-for="CategoryId" class="form-select" required>
+            <option value="">Select a Category</option>
             @foreach (var category in ViewBag.Categories) {
                <option value="@category.CategoryId">@category.Name</option>
             }
@@ -43,8 +43,8 @@
 
     <div class="form-check">
         <label asp-for="Completed">Completed?</label> <br />
-        <select asp-for="Completed">
-            <option value="2"></option>
+        <select asp-for="Completed" required>
+            <option value=""></option>
             <option value="0">No</option>
             <option value="1">Yes</option>
         </select>
@@ -54,7 +54,5 @@
         @(Model?.TaskId == 0 ? "Save Task" : "Update Task")
     </button>
 </form>
-
-<div asp-validation-summary="All"></div>
 
 <a asp-action="Index" asp-controller="Home" class="btn btn-secondary mt-3">Back to List</a>
