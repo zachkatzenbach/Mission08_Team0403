@@ -58,5 +58,36 @@ namespace Mission08_Team0403.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var taskToDelete = _repo.GetTaskById(id);
+
+            return View("DeleteTask", taskToDelete);
+        }
+        [HttpPost]
+        public IActionResult Delete(Task taskToDelete)
+        {
+            _repo.DeleteTask(taskToDelete);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Complete(int id)
+        {
+            var recordToUpdate = _repo.Tasks.Single(x => x.TaskId == id);
+            ViewBag.Categories = _repo.Categories;
+
+            return View("CompleteTask", recordToUpdate);
+        }
+        [HttpPost]
+        public IActionResult Complete(Task task)
+        {
+            _repo.UpdateComplete(task);
+
+            return RedirectToAction("Index");
+        }
     }
 }

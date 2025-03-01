@@ -5,7 +5,7 @@
 <head> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Mission08_Team0403</title>
+    <title>@ViewData["Title"] Task Manager</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Mission08_Team0403.styles.css" asp-append-version="true" />
@@ -14,7 +14,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Mission08_Team0403</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Task Manager</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -25,10 +25,10 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Task" asp-action="Index">Tasks</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Tasks</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Task" asp-action="AddTask">Add Task</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="AddTask">Add Task</a>
                         </li>
                     </ul>
                 </div>
@@ -44,7 +44,7 @@
 
     <footer class="border-top footer text-muted bg-light py-3">
         <div class="container text-center">
-            &copy; 2025 - Mission08_Team0403
+            &copy; 2025 - Task Manager
         </div>
     </footer>
 
