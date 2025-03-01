@@ -14,8 +14,8 @@
 
     <!-- Task Information -->
     <div class="alert alert-danger">
-        <h3>@Model.TaskName</h3>
-        <p><strong>Due Date:</strong> @Model.DueDate?.ToString("MM/dd/yyyy")</p>
+        <h2><strong>Task:</strong> @Model.TaskName</h2>
+        <h3><strong>Due Date:</strong> @Model.DueDate.("MM/dd/yyyy")</h3>
         <p>
             <strong>Quadrant:</strong>
             @(Model.Quadrant == 1 ? "Quadrant I: Important & Urgent" :

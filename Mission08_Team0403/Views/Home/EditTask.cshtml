@@ -1,0 +1,64 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Mission08_Team0403.Models.Task
+
+@{
+    ViewData["Title"] = Model?.TaskId == 0 ? "Add Task" : "Edit Task";
+}
+
+<h2>@(Model?.TaskId == 0 ? "Add a New Task" : "Edit Task")</h2>
+
+<form asp-action="@(Model?.TaskId == 0 ? "AddTask" : "EditTask")" asp-controller="Home" method="post">
+    <input type="hidden" asp-for="TaskId" />
+
+    <div class="mb-3">
+        <label asp-for="TaskName" class="form-label">Task</label>
+        <input asp-for="TaskName" class="form-control" required />
+        <span asp-validation-for="TaskName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DueDate" class="form-label">Due Date</label>
+        <input asp-for="DueDate" class="form-control" type="date" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Quadrant" class="form-label">Quadrant</label>
+        <select asp-for="Quadrant" class="form-select" required>
+            <option value="">Select Quadrant</option>
+            <option value="1" selected="@(Model?.Quadrant == 1 ? "selected" : null)">Quadrant I: Important / Urgent</option>
+            <option value="2" selected="@(Model?.Quadrant == 2 ? "selected" : null)">Quadrant II: Important / Not Urgent</option>
+            <option value="3" selected="@(Model?.Quadrant == 3 ? "selected" : null)">Quadrant III: Not Important / Urgent</option>
+            <option value="4" selected="@(Model?.Quadrant == 4 ? "selected" : null)">Quadrant IV: Not Important / Not Urgent</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CategoryId" class="form-label">Category</label>
+        <select asp-for="CategoryId" class="form-select">
+            <option value="">Select a Category</option>
+            @foreach (var category in ViewBag.Categories) {
+               <option value="@category.CategoryId" selected="@(Model?.CategoryId == category.CategoryId ? "selected" : "")">@category.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-check">
+        <label asp-for="Completed">Completed?</label> <br />
+        <select asp-for="Completed">
+            <option value="2" selected="@((Model?.Completed == 2) ? "selected" : "")"></option>
+            <option value="2" selected="@((Model?.Completed == 1) ? "selected" : "")"></option>
+            <option value="2" selected="@((Model?.Completed == 0) ? "selected" : "")"></option>
+
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">
+        @(Model?.TaskId == 0 ? "Save Task" : "Update Task")
+    </button>
+</form>
+
+<a asp-action="Index" asp-controller="Home" class="btn btn-secondary mt-3">Back to List</a>
