@@ -26,12 +26,25 @@ namespace Mission08_Team0403.Controllers
 
 
         [HttpGet]
-        public IActionResult AddEditTask()
+        public IActionResult AddTask()
         {
             ViewBag.Categories = _repo.Categories;
 
             return View("AddEditTask", new Task());
         }
+        [HttpPost]
+        public IActionResult AddTask(Task response)
+        {
+            if (ModelState.IsValid)
+            {
+                _repo.AddTask(response);
 
+                return View("Index");
+            }
+            else
+            {
+                return View("Index");
+            }
+        }
     }
 }

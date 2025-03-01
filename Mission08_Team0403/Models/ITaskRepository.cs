@@ -1,4 +1,6 @@
-﻿namespace Mission08_Team0403.Models
+﻿using AspNetCoreGeneratedDocument;
+
+namespace Mission08_Team0403.Models
 {
     public interface ITaskRepository
     {
@@ -7,5 +9,6 @@
 
         public IEnumerable<Task> GetTasksWithDetails();
 
+        public void AddTask(Task task);
     }
 }
