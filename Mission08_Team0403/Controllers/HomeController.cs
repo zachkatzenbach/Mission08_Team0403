@@ -36,16 +36,27 @@ namespace Mission08_Team0403.Controllers
         [HttpPost]
         public IActionResult AddTask(Task response)
         {
-            if (ModelState.IsValid)
-            {
+
                 _repo.AddTask(response);
 
-                return View("Index");
-            }
-            else
-            {
-                return View("Index");
-            }
+                return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult EditTask(int id)
+        {
+            var recordToEdit = _repo.Tasks.Single(x => x.TaskId == id);
+            ViewBag.Categories = _repo.Categories;
+
+            return View("AddEditTask", recordToEdit);
+        }
+
+        [HttpPost]
+        public IActionResult EditTask(Task updatedInfo)
+        {
+            _repo.UpdateTask(updatedInfo);
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -25,7 +25,7 @@
                                 <div class="alert alert-danger d-flex justify-content-between align-items-center">
                                     <span>@task.TaskName - Due: @task.DueDate</span>
                                     <div>
-                                        <a class="btn btn-sm btn-warning" asp-controller="Home" asp-action="Edit" asp-route-id="@task.TaskId">✏ Edit</a>
+                                        <a class="btn btn-sm btn-warning" asp-controller="Home" asp-action="EditTask" asp-route-id="@task.TaskId">✏ Edit</a>
                                         <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Complete" asp-route-id="@task.TaskId">✅ Complete</a>
                                         <a class="btn btn-sm btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@task.TaskId" onclick="return confirm('Are you sure?')">🗑 Delete</a>
                                     </div>
@@ -50,7 +50,7 @@
                                 <div class="alert alert-warning d-flex justify-content-between align-items-center">
                                     <span>@task.TaskName - Due: @task.DueDate</span>
                                         <div>
-                                        <a class="btn btn-sm btn-warning" asp-controller="Home" asp-action="Edit" asp-route-id="@task.TaskId">✏ Edit</a>
+                                        <a class="btn btn-sm btn-warning" asp-controller="Home" asp-action="EditTask" asp-route-id="@task.TaskId">✏ Edit</a>
                                         <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Complete" asp-route-id="@task.TaskId">✅ Complete</a>
                                         <a class="btn btn-sm btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@task.TaskId" onclick="return confirm('Are you sure?')">🗑 Delete</a>
                                     </div>
@@ -75,7 +75,7 @@
                                 <div class="alert alert-info d-flex justify-content-between align-items-center">
                                     <span>@task.TaskName - Due: @task.DueDate</span>
                                     <div>
-                                        <a class="btn btn-sm btn-warning" asp-controller="Home" asp-action="Edit" asp-route-id="@task.TaskId">✏ Edit</a>
+                                        <a class="btn btn-sm btn-warning" asp-controller="Home" asp-action="EditTask" asp-route-id="@task.TaskId">✏ Edit</a>
                                         <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Complete" asp-route-id="@task.TaskId">✅ Complete</a>
                                         <a class="btn btn-sm btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@task.TaskId" onclick="return confirm('Are you sure?')">🗑 Delete</a>
                                     </div>
@@ -101,7 +101,7 @@
                                 <div class="alert alert-secondary d-flex justify-content-between align-items-center">
                                     <span>@task.TaskName - Due: @task.DueDate</span>
                                     <div>
-                                        <a class="btn btn-sm btn-warning" asp-controller="Home" asp-action="Edit" asp-route-id="@task.TaskId">✏ Edit</a>
+                                        <a class="btn btn-sm btn-warning" asp-controller="Home" asp-action="EditTask" asp-route-id="@task.TaskId">✏ Edit</a>
                                         <a class="btn btn-sm btn-success" asp-controller="Home" asp-action="Complete" asp-route-id="@task.TaskId">✅ Complete</a>
                                         <a class="btn btn-sm btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@task.TaskId" onclick="return confirm('Are you sure?')">🗑 Delete</a>
                                     </div>
